@@ -1,5 +1,5 @@
 - name: frontend Setup
-  host: all
+  hosts: all
   tasks:
   - name: Disable Default Nginx
     ansible.builtin.shell: dnf module disable nginx -y &>>$log_file
@@ -11,7 +11,7 @@
     ansible.builtin.dnf:
       name: nginx
       state:  installed
-      
+
 
 
     
