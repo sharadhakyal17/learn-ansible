@@ -1,0 +1,97 @@
+- name: Play Variables
+  hosts: localhost
+  connection: local
+  vars:
+    URL: play.google.com
+  tasks:
+    - name: Print URL
+      ansible.builtins.debug:
+        msg: "{{ URL }}"
+
+# In ansible we access variable with {{ }}
+# Also, if the value is variable or starts with variable then we need to quote it ( Double quotes preferred)
+# key: "{{ val }}"
+# key: "{{ val }} some-other string"
+# key: some - {{ val }}      # this does not require quotes.
+
+
+- name: Task Variables
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Print URL
+      ansible.builtin.debug:
+        msg: "{{ URL }}"
+      vars:
+        URL: task.google.com
+
+
+- name: Role variables
+  host: localhost
+  connection: local
+  roles:
+    - demo
+
+
+# from command line also we can send variable to playbook by using -e option
+
+# If the same variable name comes in different locations then precedence will come.
+# 1. CLI variable
+# 2. Task variable
+# 3. Role variable
+# 4. Play variable
+
+
+# Variables are now three types
+
+# 1. Normal
+# vars:
+#   URL: example.com
+
+# 2. List
+# vars:
+#   URLS:
+#     - app1.example.com
+#     - app2.example.com
+# {{ URLS[0] }}
+
+#  3. Map
+# vars
+#   URLS:
+#     app1: app1.example.com
+#     app2: app2.example.com
+#{{ URLS.app1 }}
+
+
+# Variable also have data types
+# 1. String
+# 2. Number
+# 3. Boolean ( True/False , Yes/No, )
+
+
+## Up to now we have seen the user defined variables, where as ansible determines the system config and make those variables available for you to use.
+# Those are called as facts
+
+- name: Print a fact
+  hosts: localhost
+  conenction: local
+  tasks:
+    - name: Print a fact
+      ansible.builtin.debug:
+        msg: "{{ ansible_distribution }}"
+
+
+- name: varaible from task output
+  hosts: localhost
+  conenction: local
+  tasks:
+    - name: Run uptime command
+      ansible.builtin.shell: uptime
+      register: out
+
+    - name: print a out
+      ansible.builtin.debug: 
+        msg: "{{ out }}"
+
+
+
