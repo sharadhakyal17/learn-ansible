@@ -27,7 +27,7 @@
 
 
 - name: Role variables
-  host: localhost
+  hosts: localhost
   connection: local
   roles:
     - demo
