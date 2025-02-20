@@ -13,3 +13,5 @@
         msg: "x is lesser than 10 "
 
 # In when conditions variable doesnt need flower brackets
+
+# command line args:  ansible-playbook -i ../inv -become  -e ansible_user=ec2-user -e ansible_password=DevOps321 04-condition.yml --extra-vars "x=9"
