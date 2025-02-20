@@ -5,7 +5,7 @@
     URL: play.google.com
   tasks:
     - name: Print URL
-      ansible.builtins.debug:
+      ansible.builtin.debug:
         msg: "{{ URL }}"
 
 # In ansible we access variable with {{ }}
