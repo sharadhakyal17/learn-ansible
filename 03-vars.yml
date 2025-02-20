@@ -74,7 +74,7 @@
 
 - name: Print a fact
   hosts: localhost
-  conenction: local
+  connection: local
   tasks:
     - name: Print a fact
       ansible.builtin.debug:
@@ -83,7 +83,7 @@
 
 - name: varaible from task output
   hosts: localhost
-  conenction: local
+  connection: local
   tasks:
     - name: Run uptime command
       ansible.builtin.shell: uptime
